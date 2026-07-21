@@ -1,22 +1,22 @@
 import React from 'react';
-import BrutalistMonolith from './BrutalistMonolith';
-import EditorialSerif from './EditorialSerif';
-import TerminalGreen from './TerminalGreen';
-import SwissGrid from './SwissGrid';
-import HighContrast from './HighContrast';
-import Architectural from './Architectural';
+import ModernDeveloper from './ModernDeveloper';
+import Minimal from './Minimal';
+import DarkProfessional from './DarkProfessional';
+import CreativeDesigner from './CreativeDesigner';
+import Glassmorphism from './Glassmorphism';
+import Corporate from './Corporate';
 
 export const ThemeRegistry = {
-  'Brutalist Monolith': BrutalistMonolith,
-  'Editorial Serif': EditorialSerif,
-  'Terminal Green': TerminalGreen,
-  'Swiss Grid': SwissGrid,
-  'High Contrast': HighContrast,
-  'Architectural': Architectural,
+  'Modern Developer': ModernDeveloper,
+  'Minimal': Minimal,
+  'Dark Professional': DarkProfessional,
+  'Creative Designer': CreativeDesigner,
+  'Glassmorphism': Glassmorphism,
+  'Corporate': Corporate,
 };
 
 export const PortfolioRenderer = ({ selectedTheme, data, isPreview = false }) => {
-  // Resolve theme Component. Fallback to Brutalist if match fails.
-  const Component = ThemeRegistry[selectedTheme] || ThemeRegistry['Brutalist Monolith'];
+  // Resolve theme Component. Fallback to Modern Developer if match fails.
+  const Component = ThemeRegistry[selectedTheme] || ThemeRegistry['Modern Developer'];
   return <Component data={data} isPreview={isPreview} />;
 };

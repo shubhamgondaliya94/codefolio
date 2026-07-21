@@ -41,7 +41,7 @@ const Dashboard = () => {
     profileImage: '',
     projects: [],
     uploadedPPT: '',
-    selectedTheme: 'Brutalist Monolith',
+    selectedTheme: 'Modern Developer',
     socialLinks: { twitter: '', facebook: '', instagram: '', youtube: '' },
     contactDetails: { phone: '', address: '' },
   });

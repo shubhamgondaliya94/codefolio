@@ -6,12 +6,12 @@ const Home = () => {
   const { user } = useAuth();
 
   const themesShowcase = [
-    { name: 'Brutalist Monolith', desc: 'Stark contrasts and raw borders.', style: 'bg-[#0A0A0A] border border-[#D1FF36] text-[#D1FF36]' },
-    { name: 'Editorial Serif', desc: 'Elegant typography and off-white space.', style: 'bg-[#F4F1ED] border border-[#11100F] text-[#11100F]' },
-    { name: 'Terminal Green', desc: 'Monospace structure, neon highlights.', style: 'bg-[#0A0A0A] border border-[#333] text-[#F4F1ED]' },
-    { name: 'Swiss Grid', desc: 'Strict alignments and stark hierarchy.', style: 'bg-[#E5E5E5] border border-black text-black' },
-    { name: 'High Contrast', desc: 'No shades of grey. Pure black and white.', style: 'bg-black border-4 border-white text-white' },
-    { name: 'Architectural', desc: 'Blueprint aesthetics and technical lines.', style: 'bg-[#11100F] border border-blue-500 text-blue-500' },
+    { name: 'Modern Developer', desc: 'Gradients and code vibes.', style: 'bg-[#0A0A0A] border border-[#D1FF36] text-[#D1FF36]' },
+    { name: 'Minimal', desc: 'Serif fonts and vast whitespace.', style: 'bg-[#F4F1ED] border border-[#11100F] text-[#11100F]' },
+    { name: 'Dark Professional', desc: 'Cyberpunk console styling.', style: 'bg-[#0A0A0A] border border-[#333] text-[#F4F1ED]' },
+    { name: 'Creative Designer', desc: 'Warm palettes and rounded offset borders.', style: 'bg-[#E5E5E5] border border-black text-black' },
+    { name: 'Glassmorphism', desc: 'Frosted panels and glowing shapes.', style: 'bg-black border-4 border-white text-white' },
+    { name: 'Corporate', desc: 'Structured columns and formal navy grids.', style: 'bg-[#11100F] border border-blue-500 text-blue-500' },
   ];
 
   return (
