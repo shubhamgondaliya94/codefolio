@@ -1,11 +1,10 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 /* Apply styles natively on body to circumvent @apply directives issues in modern Tailwind versions */
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #020617; /* bg-slate-950 */
-  color: #f8fafc; /* text-slate-100 */
+  font-family: 'DM Sans', sans-serif;
+  background-color: #0A0A0A; 
+  color: #F4F1ED;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -17,43 +16,76 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #0A0A0A;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 9999px;
-  border: 2px solid #020617;
+  background: #222;
+  border-radius: 0;
+  border: 1px solid #333;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #D1FF36;
 }
 
-/* Custom Glassmorphism Utility styles */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Noise Texture Overlay */
+.bg-noise {
+  position: relative;
+}
+.bg-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-.glass-panel-light {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+/* Brutalist UI Elements */
+.brutalist-card {
+  background: #11100F;
+  border: 1px solid #333;
+  transition: all 0.2s ease;
+}
+.brutalist-card:hover {
+  border-color: #D1FF36;
+  box-shadow: 4px 4px 0px 0px #D1FF36;
+  transform: translate(-2px, -2px);
 }
 
-.glass-card {
-  background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.brutalist-button {
+  background: #D1FF36;
+  color: #0A0A0A;
+  border: 1px solid #D1FF36;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
 }
-.glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+.brutalist-button:hover {
+  background: #0A0A0A;
+  color: #D1FF36;
+  box-shadow: 4px 4px 0px 0px #D1FF36;
+  transform: translate(-2px, -2px);
+}
+
+.brutalist-button-secondary {
+  background: #11100F;
+  color: #F4F1ED;
+  border: 1px solid #333;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+.brutalist-button-secondary:hover {
+  background: #F4F1ED;
+  color: #0A0A0A;
+  border-color: #F4F1ED;
+  box-shadow: 4px 4px 0px 0px #F4F1ED;
+  transform: translate(-2px, -2px);
 }
 
 /* Smooth Scrolling */
@@ -61,7 +93,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom animations declarations */
+/* Custom animations */
 .animate-fade-in {
   animation: fadeIn 0.4s ease-out forwards;
 }
@@ -76,6 +108,6 @@ html {
 }
 
 @keyframes slideUp {
-  from { transform: translateY(15px); opacity: 0; }
+  from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }

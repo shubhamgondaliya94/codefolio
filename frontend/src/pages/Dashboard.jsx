@@ -41,7 +41,7 @@ const Dashboard = () => {
     profileImage: '',
     projects: [],
     uploadedPPT: '',
-    selectedTheme: 'Modern Developer',
+    selectedTheme: 'Brutalist Monolith',
     socialLinks: { twitter: '', facebook: '', instagram: '', youtube: '' },
     contactDetails: { phone: '', address: '' },
   });
@@ -243,7 +243,7 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-noise bg-[#0A0A0A] flex items-center justify-center">
         <div className="relative w-16 h-16">
           <div className="absolute top-0 left-0 w-full h-full border-4 border-indigo-500/20 rounded-full"></div>
           <div className="absolute top-0 left-0 w-full h-full border-4 border-t-indigo-500 rounded-full animate-spin"></div>
@@ -253,16 +253,16 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-noise bg-[#0A0A0A] text-[#F4F1ED] flex flex-col font-sans">
       {/* Top dashboard nav */}
-      <nav className="glass-panel border-b border-white/5 py-4 px-6 flex items-center justify-between sticky top-0 z-40">
+      <nav className="brutalist-card border-b border-[#333] py-4 px-6 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 font-extrabold text-lg text-white">
-            <span className="bg-indigo-650 px-2 py-1 rounded-lg text-sm">CF</span>
+            <span className="bg-[#D1FF36] text-black border border-[#D1FF36] px-2 py-1 rounded-lg text-sm">CF</span>
             <span>CodeFolio</span>
           </div>
-          <span className="text-slate-500">|</span>
-          <span className="text-xs font-semibold text-slate-400 bg-slate-900 px-3 py-1 rounded-lg">
+          <span className="text-[#555]">|</span>
+          <span className="text-xs font-semibold text-[#888] bg-[#11100F] px-3 py-1 rounded-lg">
             Dashboard Panel
           </span>
         </div>
@@ -271,7 +271,7 @@ const Dashboard = () => {
           <button
             onClick={saveDashboard}
             disabled={saveLoading}
-            className="flex items-center gap-1.5 px-4 py-2 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 rounded-xl text-xs font-semibold transition-all disabled:opacity-50"
+            className="flex items-center gap-1.5 px-4 py-2 bg-[#11100F] border border-slate-800 hover:border-slate-700 text-[#F4F1ED] rounded-xl text-xs font-semibold transition-all disabled:opacity-50"
           >
             <Save className="w-3.5 h-3.5" />
             <span>Save Draft</span>
@@ -279,7 +279,7 @@ const Dashboard = () => {
           <button
             onClick={publishPortfolio}
             disabled={saveLoading}
-            className="flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50"
+            className="flex items-center gap-1.5 px-4 py-2 bg-[#D1FF36] text-black hover:bg-[#F4F1ED] hover:text-black text-white rounded-xl text-xs font-semibold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50"
           >
             <Rocket className="w-3.5 h-3.5" />
             <span>Publish Live</span>
@@ -298,17 +298,17 @@ const Dashboard = () => {
       <div className="flex-1 grid lg:grid-cols-12 overflow-hidden h-[calc(100vh-69px)]">
         
         {/* Left Side: Forms Editor */}
-        <aside className="lg:col-span-5 border-r border-white/5 overflow-y-auto p-6 space-y-6">
+        <aside className="lg:col-span-5 border-r border-[#333] overflow-y-auto p-6 space-y-6">
           {/* Tabs header */}
-          <div className="flex border-b border-white/5 pb-2 scrollbar-none overflow-x-auto gap-2">
+          <div className="flex border-b border-[#333] pb-2 scrollbar-none overflow-x-auto gap-2">
             {['profile', 'projects', 'skills_theme', 'publish'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap ${
                   activeTab === tab
-                    ? 'bg-indigo-650/15 border border-indigo-500/30 text-indigo-400'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#D1FF36] text-black border border-[#D1FF36]/15 border border-[#D1FF36] text-[#D1FF36]'
+                    : 'text-[#888] hover:text-[#F4F1ED]'
                 }`}
               >
                 {tab.replace('_', ' & ')}
@@ -321,22 +321,22 @@ const Dashboard = () => {
             <div className="space-y-4 animate-fade-in">
               <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-2">Personal Identity</h3>
 
-              <div className="flex items-center gap-6 p-4 bg-slate-900/30 border border-slate-900 rounded-2xl">
-                <div className="relative w-20 h-20 bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shrink-0 flex items-center justify-center text-slate-500">
+              <div className="flex items-center gap-6 p-4 bg-[#11100F]/30 border border-slate-900 rounded-2xl">
+                <div className="relative w-20 h-20 bg-[#222] rounded-2xl border border-slate-700 overflow-hidden shrink-0 flex items-center justify-center text-[#555]">
                   {formData.profileImage ? (
                     <img src={formData.profileImage} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
                     <User className="w-8 h-8" />
                   )}
                   {uploadProgress.profileImage && (
-                    <div className="absolute inset-0 bg-slate-950/70 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-noise bg-[#0A0A0A]/70 flex items-center justify-center">
                       <div className="w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
                     </div>
                   )}
                 </div>
                 <div className="space-y-1">
-                  <span className="text-xs text-slate-400 font-semibold">Profile Photograph</span>
-                  <label className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors max-w-max">
+                  <span className="text-xs text-[#888] font-semibold">Profile Photograph</span>
+                  <label className="flex items-center gap-1.5 px-3 py-1.5 bg-[#222] hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors max-w-max">
                     <Upload className="w-3.5 h-3.5" />
                     <span>Upload Image</span>
                     <input
@@ -350,7 +350,7 @@ const Dashboard = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                   Full Name
                 </label>
                 <input
@@ -358,13 +358,13 @@ const Dashboard = () => {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  className="w-full bg-slate-900/50 border border-slate-850 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all text-slate-100"
+                  className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all text-[#F4F1ED]"
                   placeholder="e.g. John Doe"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                   Role Title
                 </label>
                 <input
@@ -372,13 +372,13 @@ const Dashboard = () => {
                   name="role"
                   value={formData.role}
                   onChange={handleInputChange}
-                  className="w-full bg-slate-900/50 border border-slate-850 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all text-slate-100"
+                  className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all text-[#F4F1ED]"
                   placeholder="e.g. Full Stack Architect"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                   Personal Biography (Bio)
                 </label>
                 <textarea
@@ -386,16 +386,16 @@ const Dashboard = () => {
                   value={formData.bio}
                   onChange={handleInputChange}
                   rows="4"
-                  className="w-full bg-slate-900/50 border border-slate-850 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all resize-none text-slate-100"
+                  className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all resize-none text-[#F4F1ED]"
                   placeholder="Write a brief overview describing your expertise..."
                 ></textarea>
               </div>
 
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">Socials & Contact Details</h3>
+              <h3 className="text-sm font-bold text-white uppercase tracking-wider pt-4 border-t border-[#333]">Socials & Contact Details</h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                     Contact Email (Visible on page)
                   </label>
                   <div className="relative">
@@ -405,14 +405,14 @@ const Dashboard = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full bg-slate-900/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all"
+                      className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all"
                       placeholder="hello@john.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                     Contact Phone
                   </label>
                   <div className="relative">
@@ -421,14 +421,14 @@ const Dashboard = () => {
                       type="text"
                       value={formData.contactDetails.phone}
                       onChange={(e) => handleNestedInputChange('contactDetails', 'phone', e.target.value)}
-                      className="w-full bg-slate-900/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all"
+                      className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all"
                       placeholder="+1 555-0199"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                     GitHub Profile URL
                   </label>
                   <div className="relative">
@@ -438,14 +438,14 @@ const Dashboard = () => {
                       name="github"
                       value={formData.github}
                       onChange={handleInputChange}
-                      className="w-full bg-slate-900/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all"
+                      className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all"
                       placeholder="https://github.com/username"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                     LinkedIn Profile URL
                   </label>
                   <div className="relative">
@@ -455,7 +455,7 @@ const Dashboard = () => {
                       name="linkedin"
                       value={formData.linkedin}
                       onChange={handleInputChange}
-                      className="w-full bg-slate-900/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all"
+                      className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all"
                       placeholder="https://linkedin.com/in/username"
                     />
                   </div>
@@ -463,7 +463,7 @@ const Dashboard = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1.5">
                   Office Location (Address)
                 </label>
                 <div className="relative">
@@ -472,7 +472,7 @@ const Dashboard = () => {
                     type="text"
                     value={formData.contactDetails.address}
                     onChange={(e) => handleNestedInputChange('contactDetails', 'address', e.target.value)}
-                    className="w-full bg-slate-900/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all"
+                    className="w-full bg-[#11100F]/50 border border-slate-850 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#D1FF36] focus:ring-2 focus:ring-[#D1FF36] transition-all"
                     placeholder="San Francisco, CA"
                   />
                 </div>
@@ -487,7 +487,7 @@ const Dashboard = () => {
                 <h3 className="text-sm font-bold text-white uppercase tracking-wider">Featured Projects</h3>
                 <button
                   onClick={addProject}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600/10 border border-indigo-500/30 text-indigo-400 rounded-xl text-xs font-bold transition-all hover:bg-indigo-650/20"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-[#D1FF36] text-black/10 border border-[#D1FF36] text-[#D1FF36] rounded-xl text-xs font-bold transition-all hover:bg-[#D1FF36] text-black border border-[#D1FF36]/20"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add Project</span>
@@ -495,7 +495,7 @@ const Dashboard = () => {
               </div>
 
               {formData.projects.length === 0 ? (
-                <div className="text-center py-10 border-2 border-dashed border-slate-850 rounded-3xl space-y-2 text-slate-500">
+                <div className="text-center py-10 border-2 border-dashed border-slate-850 rounded-3xl space-y-2 text-[#555]">
                   <FileSpreadsheet className="w-8 h-8 mx-auto stroke-1" />
                   <p className="text-xs">No project cards configured yet. Let's create one!</p>
                 </div>
@@ -504,15 +504,15 @@ const Dashboard = () => {
                   {formData.projects.map((project, index) => (
                     <div
                       key={index}
-                      className="p-5 bg-slate-900/20 border border-slate-900 rounded-2xl relative space-y-4 group/card"
+                      className="p-5 bg-[#11100F]/20 border border-slate-900 rounded-2xl relative space-y-4 group/card"
                     >
                       <div className="flex justify-between items-center">
-                        <span className="text-xs font-extrabold text-indigo-400 uppercase tracking-widest">
+                        <span className="text-xs font-extrabold text-[#D1FF36] uppercase tracking-widest">
                           Project #{index + 1}
                         </span>
                         <button
                           onClick={() => removeProject(index)}
-                          className="p-1 text-slate-500 hover:text-rose-455 transition-colors"
+                          className="p-1 text-[#555] hover:text-rose-455 transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -520,64 +520,64 @@ const Dashboard = () => {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                          <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1">
                             Title
                           </label>
                           <input
                             type="text"
                             value={project.title}
                             onChange={(e) => updateProjectField(index, 'title', e.target.value)}
-                            className="w-full bg-slate-950/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500"
+                            className="w-full bg-noise bg-[#0A0A0A]/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#D1FF36]"
                             placeholder="Project title"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                          <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1">
                             Live Demo Link
                           </label>
                           <input
                             type="url"
                             value={project.liveLink}
                             onChange={(e) => updateProjectField(index, 'liveLink', e.target.value)}
-                            className="w-full bg-slate-950/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500"
+                            className="w-full bg-noise bg-[#0A0A0A]/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#D1FF36]"
                             placeholder="https://example.com"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                        <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1">
                           Description
                         </label>
                         <textarea
                           value={project.description}
                           onChange={(e) => updateProjectField(index, 'description', e.target.value)}
                           rows="2"
-                          className="w-full bg-slate-950/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500 resize-none"
+                          className="w-full bg-noise bg-[#0A0A0A]/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#D1FF36] resize-none"
                           placeholder="Brief case study summary..."
                         ></textarea>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4 items-center pt-2">
                         <div>
-                          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                          <label className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1">
                             GitHub Repository
                           </label>
                           <input
                             type="url"
                             value={project.githubLink}
                             onChange={(e) => updateProjectField(index, 'githubLink', e.target.value)}
-                            className="w-full bg-slate-950/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500"
+                            className="w-full bg-noise bg-[#0A0A0A]/50 border border-slate-850 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#D1FF36]"
                             placeholder="GitHub Link"
                           />
                         </div>
 
                         <div>
-                          <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                          <span className="block text-xs font-semibold text-[#888] uppercase tracking-wider mb-1">
                             Screenshot
                           </span>
-                          <label className="flex items-center gap-1.5 px-3 py-2 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-350 text-xs font-medium rounded-xl cursor-pointer transition-colors max-w-max">
+                          <label className="flex items-center gap-1.5 px-3 py-2 bg-[#11100F] border border-slate-800 hover:border-slate-700 text-slate-350 text-xs font-medium rounded-xl cursor-pointer transition-colors max-w-max">
                             <Upload className="w-3.5 h-3.5" />
                             <span>{project.image ? 'Replace Image' : 'Add Image'}</span>
                             <input
@@ -613,12 +613,12 @@ const Dashboard = () => {
                     type="text"
                     value={skillInput}
                     onChange={(e) => setSkillInput(e.target.value)}
-                    className="flex-1 bg-slate-900/50 border border-slate-850 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500"
+                    className="flex-1 bg-[#11100F]/50 border border-slate-850 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#D1FF36]"
                     placeholder="Add e.g. TypeScript, AWS"
                   />
                   <button
                     type="submit"
-                    className="p-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl transition-all"
+                    className="p-2 bg-[#D1FF36] text-black hover:bg-[#F4F1ED] hover:text-black text-white rounded-xl transition-all"
                   >
                     <Plus className="w-5 h-5" />
                   </button>
@@ -628,13 +628,13 @@ const Dashboard = () => {
                   {formData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900/50 border border-slate-850 text-slate-350 rounded-lg text-xs font-semibold cursor-default"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#11100F]/50 border border-slate-850 text-slate-350 rounded-lg text-xs font-semibold cursor-default"
                     >
                       <span>{skill}</span>
                       <button
                         type="button"
                         onClick={() => removeSkill(index)}
-                        className="text-slate-500 hover:text-rose-455 transition-colors font-bold text-[10px]"
+                        className="text-[#555] hover:text-rose-455 transition-colors font-bold text-[10px]"
                       >
                         ✕
                       </button>
@@ -644,7 +644,7 @@ const Dashboard = () => {
               </div>
 
               {/* Theme selection */}
-              <div className="space-y-4 border-t border-white/5 pt-6">
+              <div className="space-y-4 border-t border-[#333] pt-6">
                 <h3 className="text-sm font-bold text-white uppercase tracking-wider">Choose Theme Preset</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {[
@@ -660,8 +660,8 @@ const Dashboard = () => {
                       onClick={() => setFormData({ ...formData, selectedTheme: themeName })}
                       className={`p-4 border rounded-2xl text-left transition-all ${
                         formData.selectedTheme === themeName
-                          ? 'bg-indigo-650/10 border-indigo-500 text-indigo-300'
-                          : 'bg-slate-900/30 border-slate-900 hover:border-slate-800 text-slate-350'
+                          ? 'bg-[#D1FF36] text-black border border-[#D1FF36]/10 border-indigo-500 text-indigo-300'
+                          : 'bg-[#11100F]/30 border-slate-900 hover:border-slate-800 text-slate-350'
                       }`}
                     >
                       <h4 className="text-xs font-extrabold tracking-wide uppercase">{themeName}</h4>
@@ -671,14 +671,14 @@ const Dashboard = () => {
               </div>
 
               {/* PDF & PPT Files upload */}
-              <div className="space-y-4 border-t border-white/5 pt-6">
+              <div className="space-y-4 border-t border-[#333] pt-6">
                 <h3 className="text-sm font-bold text-white uppercase tracking-wider">Document Uploads</h3>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {/* CV Upload */}
-                  <div className="p-4 bg-slate-900/30 border border-slate-900 rounded-2xl space-y-3">
+                  <div className="p-4 bg-[#11100F]/30 border border-slate-900 rounded-2xl space-y-3">
                     <span className="text-xs font-bold text-slate-350 block">Resume (PDF/Word Doc)</span>
-                    <label className="flex items-center justify-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors w-full">
+                    <label className="flex items-center justify-center gap-1.5 px-3 py-2 bg-[#222] hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors w-full">
                       <Upload className="w-3.5 h-3.5" />
                       <span>{formData.resumeURL ? 'Replace PDF' : 'Upload PDF'}</span>
                       <input
@@ -694,9 +694,9 @@ const Dashboard = () => {
                   </div>
 
                   {/* PPT Upload */}
-                  <div className="p-4 bg-slate-900/30 border border-slate-900 rounded-2xl space-y-3">
+                  <div className="p-4 bg-[#11100F]/30 border border-slate-900 rounded-2xl space-y-3">
                     <span className="text-xs font-bold text-slate-350 block">PowerPoint Deck (PPT/PPTX)</span>
-                    <label className="flex items-center justify-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors w-full">
+                    <label className="flex items-center justify-center gap-1.5 px-3 py-2 bg-[#222] hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors w-full">
                       <Upload className="w-3.5 h-3.5" />
                       <span>{formData.uploadedPPT ? 'Replace Slide' : 'Upload Slides'}</span>
                       <input
@@ -720,18 +720,18 @@ const Dashboard = () => {
             <div className="space-y-6 animate-fade-in">
               <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-2">Publish Settings</h3>
 
-              <div className="p-5 bg-slate-900/30 border border-slate-900 rounded-2xl space-y-4">
-                <span className="text-xs text-slate-400 font-semibold block">Public Access Address (URL)</span>
+              <div className="p-5 bg-[#11100F]/30 border border-slate-900 rounded-2xl space-y-4">
+                <span className="text-xs text-[#888] font-semibold block">Public Access Address (URL)</span>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     readOnly
                     value={getPublicUrl()}
-                    className="flex-1 bg-slate-950/60 border border-slate-850 text-slate-400 text-xs px-3 py-2 rounded-xl focus:outline-none"
+                    className="flex-1 bg-noise bg-[#0A0A0A]/60 border border-slate-850 text-[#888] text-xs px-3 py-2 rounded-xl focus:outline-none"
                   />
                   <button
                     onClick={copyUrlToClipboard}
-                    className="p-2 bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 rounded-xl transition-all"
+                    className="p-2 bg-[#222] hover:bg-slate-750 text-[#F4F1ED] border border-slate-700 rounded-xl transition-all"
                     title="Copy URL"
                   >
                     <Copy className="w-4 h-4" />
@@ -743,7 +743,7 @@ const Dashboard = () => {
                     href={getPublicUrl()}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold transition-all shadow-md shadow-indigo-600/20"
+                    className="flex items-center gap-1.5 px-4 py-2 bg-[#D1FF36] text-black hover:bg-[#F4F1ED] hover:text-black text-white rounded-xl text-xs font-semibold transition-all shadow-md shadow-indigo-600/20"
                   >
                     <span>View Public Page</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -756,10 +756,10 @@ const Dashboard = () => {
         </aside>
 
         {/* Right Side: Instant Live Preview */}
-        <section className="lg:col-span-7 bg-slate-900/20 flex flex-col h-full overflow-hidden">
+        <section className="lg:col-span-7 bg-[#11100F]/20 flex flex-col h-full overflow-hidden">
           {/* Header controls for Preview Window */}
-          <div className="bg-slate-950 border-b border-white/5 py-3 px-6 flex items-center justify-between z-10 shrink-0">
-            <span className="text-xs font-bold text-slate-400 tracking-wider uppercase flex items-center gap-1.5">
+          <div className="bg-noise bg-[#0A0A0A] border-b border-[#333] py-3 px-6 flex items-center justify-between z-10 shrink-0">
+            <span className="text-xs font-bold text-[#888] tracking-wider uppercase flex items-center gap-1.5">
               <Monitor className="w-4 h-4" />
               <span>Interactive Live Preview</span>
             </span>
@@ -771,8 +771,8 @@ const Dashboard = () => {
                   onClick={() => setPreviewMode(mode)}
                   className={`px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-lg border transition-all ${
                     previewMode === mode
-                      ? 'bg-slate-800 border-slate-700 text-white'
-                      : 'border-transparent text-slate-500 hover:text-slate-350'
+                      ? 'bg-[#222] border-slate-700 text-white'
+                      : 'border-transparent text-[#555] hover:text-slate-350'
                   }`}
                 >
                   {mode}
@@ -782,9 +782,9 @@ const Dashboard = () => {
           </div>
 
           {/* Device Mockup Wrapper */}
-          <div className="flex-1 bg-slate-950/80 p-6 overflow-y-auto flex justify-center items-start">
+          <div className="flex-1 bg-noise bg-[#0A0A0A]/80 p-6 overflow-y-auto flex justify-center items-start">
             <div
-              className={`w-full transition-all duration-300 bg-slate-950 shadow-2xl overflow-hidden border border-slate-850 ${
+              className={`w-full transition-all duration-300 bg-noise bg-[#0A0A0A] shadow-2xl overflow-hidden border border-slate-850 ${
                 previewMode === 'mobile' ? 'max-w-[360px] rounded-[2.5rem] min-h-[640px]' : 'w-full rounded-2xl min-h-[85%]'
               }`}
             >

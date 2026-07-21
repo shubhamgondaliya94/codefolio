@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, Mail, Lock, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 
 const Signup = () => {
   const { signup } = useAuth();
@@ -79,137 +79,133 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center px-4 relative overflow-hidden font-sans">
-      {/* Background glow decorator */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-indigo-500/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center space-y-2">
-          <Link to="/" className="inline-flex items-center gap-2 font-extrabold text-2xl tracking-tight text-white mb-2">
-            <span className="bg-indigo-600 p-1.5 rounded-lg text-sm">CF</span>
-            <span>CodeFolio</span>
+    <div className="bg-noise bg-[#0A0A0A] text-[#F4F1ED] min-h-screen flex items-center justify-center px-4 relative overflow-hidden font-sans selection:bg-[#D1FF36] selection:text-black">
+      
+      <div className="w-full max-w-md space-y-8 relative z-10 py-12">
+        <div className="text-center space-y-4">
+          <Link to="/" className="inline-flex items-center gap-3 mb-4 group">
+            <div className="w-8 h-8 bg-[#D1FF36] border border-[#D1FF36] flex items-center justify-center font-display font-bold text-black text-lg group-hover:bg-transparent group-hover:text-[#D1FF36] transition-colors">
+              CF
+            </div>
+            <span className="font-display font-bold tracking-tight text-xl text-[#F4F1ED]">CODEFOLIO</span>
           </Link>
-          <h2 className="text-2xl font-bold tracking-tight text-white">Create your developer account</h2>
-          <p className="text-sm text-slate-400">Launch a beautiful responsive portfolio page</p>
+          <h2 className="text-4xl font-display font-bold tracking-tighter uppercase text-[#F4F1ED]">Construct Identity</h2>
+          <p className="text-[#888] uppercase tracking-widest text-xs font-bold">Initialize your developer portfolio</p>
         </div>
 
         {generalError && (
-          <div className="p-3 bg-rose-950/40 border border-rose-500/30 text-rose-350 text-xs rounded-xl flex items-start gap-2 animate-shake">
-            <AlertCircle className="w-4.5 h-4.5 shrink-0 mt-0.5" />
+          <div className="p-4 border border-rose-500 bg-[#0A0A0A] text-rose-500 text-sm flex items-start gap-3 uppercase font-bold tracking-wider">
+            <AlertCircle className="w-5 h-5 shrink-0" />
             <span>{generalError}</span>
           </div>
         )}
 
-        <div className="glass-panel p-8 rounded-3xl border border-white/5 shadow-2xl">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="brutalist-card p-10">
+          <form onSubmit={handleSubmit} className="space-y-6">
             
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                Username
+              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+                Username Identifier
               </label>
               <div className="relative">
-                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-500" />
                 <input
                   type="text"
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-                  className={`w-full bg-slate-900/50 border rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.username
-                      ? 'border-rose-500/50 focus:ring-rose-500/35 focus:border-rose-500'
-                      : 'border-slate-800 focus:ring-indigo-500/35 focus:border-indigo-500'
+                      ? 'border-rose-500 focus:border-rose-400'
+                      : 'border-[#333] focus:border-[#D1FF36]'
                   }`}
-                  placeholder="john_doe"
+                  placeholder="ID_STRING"
                 />
               </div>
-              {errors.username && <p className="text-rose-455 text-xs mt-1.5">{errors.username}</p>}
+              {errors.username && <p className="text-rose-500 font-bold uppercase tracking-wider text-xs mt-2">{errors.username}</p>}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                Email Address
+              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+                Comm Channel (Email)
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-500" />
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full bg-slate-900/50 border rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.email
-                      ? 'border-rose-500/50 focus:ring-rose-500/35 focus:border-rose-500'
-                      : 'border-slate-800 focus:ring-indigo-500/35 focus:border-indigo-500'
+                      ? 'border-rose-500 focus:border-rose-400'
+                      : 'border-[#333] focus:border-[#D1FF36]'
                   }`}
-                  placeholder="john@example.com"
+                  placeholder="USER@HOST.COM"
                 />
               </div>
-              {errors.email && <p className="text-rose-455 text-xs mt-1.5">{errors.email}</p>}
+              {errors.email && <p className="text-rose-500 font-bold uppercase tracking-wider text-xs mt-2">{errors.email}</p>}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                Password
+              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+                Access Token (Password)
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-500" />
                 <input
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className={`w-full bg-slate-900/50 border rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.password
-                      ? 'border-rose-500/50 focus:ring-rose-500/35 focus:border-rose-500'
-                      : 'border-slate-800 focus:ring-indigo-500/35 focus:border-indigo-500'
+                      ? 'border-rose-500 focus:border-rose-400'
+                      : 'border-[#333] focus:border-[#D1FF36]'
                   }`}
                   placeholder="••••••••"
                 />
               </div>
-              {errors.password && <p className="text-rose-455 text-xs mt-1.5">{errors.password}</p>}
+              {errors.password && <p className="text-rose-500 font-bold uppercase tracking-wider text-xs mt-2">{errors.password}</p>}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                Confirm Password
+              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+                Verify Access Token
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-500" />
                 <input
                   type="password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className={`w-full bg-slate-900/50 border rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.confirmPassword
-                      ? 'border-rose-500/50 focus:ring-rose-500/35 focus:border-rose-500'
-                      : 'border-slate-800 focus:ring-indigo-500/35 focus:border-indigo-500'
+                      ? 'border-rose-500 focus:border-rose-400'
+                      : 'border-[#333] focus:border-[#D1FF36]'
                   }`}
                   placeholder="••••••••"
                 />
               </div>
-              {errors.confirmPassword && <p className="text-rose-455 text-xs mt-1.5">{errors.confirmPassword}</p>}
+              {errors.confirmPassword && <p className="text-rose-500 font-bold uppercase tracking-wider text-xs mt-2">{errors.confirmPassword}</p>}
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-indigo-650 hover:bg-indigo-600 text-white rounded-xl text-sm font-semibold transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center"
+              className="brutalist-button w-full py-4 text-sm mt-4 flex justify-center items-center"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
               ) : (
-                'Create Account'
+                'Create Identity'
               )}
             </button>
 
           </form>
         </div>
 
-        <div className="text-center text-sm text-slate-400">
-          Already have an account?{' '}
-          <Link to="/login" className="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
-            Sign In
+        <div className="text-center text-xs font-bold uppercase tracking-widest text-[#888]">
+          Already Initialized?{' '}
+          <Link to="/login" className="text-[#D1FF36] hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">
+            Authenticate
           </Link>
         </div>
       </div>
