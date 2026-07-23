@@ -79,22 +79,22 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-noise bg-[#0A0A0A] text-[#F4F1ED] min-h-screen flex items-center justify-center px-4 relative overflow-hidden font-sans selection:bg-[#D1FF36] selection:text-black">
+    <div className="bg-noise bg-background text-text min-h-screen flex items-center justify-center px-4 relative overflow-hidden font-sans selection:bg-accent selection:text-background">
       
       <div className="w-full max-w-md space-y-8 relative z-10 py-12">
         <div className="text-center space-y-4">
           <Link to="/" className="inline-flex items-center gap-3 mb-4 group">
-            <div className="w-8 h-8 bg-[#D1FF36] border border-[#D1FF36] flex items-center justify-center font-display font-bold text-black text-lg group-hover:bg-transparent group-hover:text-[#D1FF36] transition-colors">
+            <div className="w-8 h-8 bg-accent border border-accent flex items-center justify-center font-display font-bold text-black text-lg group-hover:bg-transparent group-hover:text-accent transition-colors">
               CF
             </div>
-            <span className="font-display font-bold tracking-tight text-xl text-[#F4F1ED]">CODEFOLIO</span>
+            <span className="font-display font-bold tracking-tight text-xl text-text">CODEFOLIO</span>
           </Link>
-          <h2 className="text-4xl font-display font-bold tracking-tighter uppercase text-[#F4F1ED]">Construct Identity</h2>
-          <p className="text-[#888] uppercase tracking-widest text-xs font-bold">Initialize your developer portfolio</p>
+          <h2 className="text-4xl font-display font-bold tracking-tighter uppercase text-text">Construct Identity</h2>
+          <p className="text-muted uppercase tracking-widest text-xs font-bold">Initialize your developer portfolio</p>
         </div>
 
         {generalError && (
-          <div className="p-4 border border-rose-500 bg-[#0A0A0A] text-rose-500 text-sm flex items-start gap-3 uppercase font-bold tracking-wider">
+          <div className="p-4 border border-rose-500 bg-background text-rose-500 text-sm flex items-start gap-3 uppercase font-bold tracking-wider">
             <AlertCircle className="w-5 h-5 shrink-0" />
             <span>{generalError}</span>
           </div>
@@ -104,7 +104,7 @@ const Signup = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             
             <div>
-              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+              <label className="block text-xs font-bold text-muted uppercase tracking-widest mb-2">
                 Username Identifier
               </label>
               <div className="relative">
@@ -116,7 +116,7 @@ const Signup = () => {
                   className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.username
                       ? 'border-rose-500 focus:border-rose-400'
-                      : 'border-[#333] focus:border-[#D1FF36]'
+                      : 'border-muted focus:border-accent'
                   }`}
                   placeholder="ID_STRING"
                 />
@@ -125,7 +125,7 @@ const Signup = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+              <label className="block text-xs font-bold text-muted uppercase tracking-widest mb-2">
                 Comm Channel (Email)
               </label>
               <div className="relative">
@@ -137,7 +137,7 @@ const Signup = () => {
                   className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.email
                       ? 'border-rose-500 focus:border-rose-400'
-                      : 'border-[#333] focus:border-[#D1FF36]'
+                      : 'border-muted focus:border-accent'
                   }`}
                   placeholder="USER@HOST.COM"
                 />
@@ -146,7 +146,7 @@ const Signup = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+              <label className="block text-xs font-bold text-muted uppercase tracking-widest mb-2">
                 Access Token (Password)
               </label>
               <div className="relative">
@@ -158,7 +158,7 @@ const Signup = () => {
                   className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.password
                       ? 'border-rose-500 focus:border-rose-400'
-                      : 'border-[#333] focus:border-[#D1FF36]'
+                      : 'border-muted focus:border-accent'
                   }`}
                   placeholder="••••••••"
                 />
@@ -167,7 +167,7 @@ const Signup = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#888] uppercase tracking-widest mb-2">
+              <label className="block text-xs font-bold text-muted uppercase tracking-widest mb-2">
                 Verify Access Token
               </label>
               <div className="relative">
@@ -179,7 +179,7 @@ const Signup = () => {
                   className={`w-full bg-transparent border-b-2 rounded-none px-0 py-3 text-lg focus:outline-none focus:ring-0 transition-colors ${
                     errors.confirmPassword
                       ? 'border-rose-500 focus:border-rose-400'
-                      : 'border-[#333] focus:border-[#D1FF36]'
+                      : 'border-muted focus:border-accent'
                   }`}
                   placeholder="••••••••"
                 />
@@ -202,9 +202,9 @@ const Signup = () => {
           </form>
         </div>
 
-        <div className="text-center text-xs font-bold uppercase tracking-widest text-[#888]">
+        <div className="text-center text-xs font-bold uppercase tracking-widest text-muted">
           Already Initialized?{' '}
-          <Link to="/login" className="text-[#D1FF36] hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">
+          <Link to="/login" className="text-accent hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">
             Authenticate
           </Link>
         </div>
