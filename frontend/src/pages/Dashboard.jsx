@@ -222,7 +222,12 @@ const Dashboard = () => {
           spread: 80,
           origin: { y: 0.6 }
         });
-        setToast({ message: 'Portfolio published live!', type: 'success' });
+        setToast({ message: 'Portfolio published live! Opening your link...', type: 'success' });
+        
+        // Open the generated link in a new tab after a brief delay
+        setTimeout(() => {
+          window.open(getPublicUrl(), '_blank');
+        }, 1200);
       }
     } catch (error) {
       console.error('Publish error:', error);
