@@ -338,16 +338,28 @@ const Dashboard = () => {
                 </div>
                 <div className="space-y-1">
                   <span className="text-xs text-muted font-semibold">Profile Photograph</span>
-                  <label className="flex items-center gap-1.5 px-3 py-1.5 bg-surface hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors max-w-max">
-                    <Upload className="w-3.5 h-3.5" />
-                    <span>Upload Image</span>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleFileUpload(e, 'profile', 'profileImage')}
-                      className="hidden"
-                    />
-                  </label>
+                  <div className="flex items-center gap-2">
+                    <label className="flex items-center gap-1.5 px-3 py-1.5 bg-surface hover:bg-slate-705 border border-slate-700 text-xs font-semibold rounded-lg cursor-pointer transition-colors max-w-max">
+                      <Upload className="w-3.5 h-3.5" />
+                      <span>Upload Image</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload(e, 'profile', 'profileImage')}
+                        className="hidden"
+                      />
+                    </label>
+                    {formData.profileImage && (
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, profileImage: '' })}
+                        className="flex items-center gap-1.5 px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 rounded-lg text-xs font-semibold transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Remove</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
 

@@ -56,6 +56,12 @@ const Signup = () => {
       return;
     }
 
+    const registeredEmails = JSON.parse(localStorage.getItem('registeredEmails') || '[]');
+    if (registeredEmails.includes(formData.email.trim().toLowerCase())) {
+      setGeneralError('This email is already registered. Please use a different email or log in.');
+      return;
+    }
+
     setLoading(true);
     setGeneralError('');
 
@@ -67,6 +73,8 @@ const Signup = () => {
     setLoading(false);
 
     if (result.success) {
+      registeredEmails.push(formData.email.trim().toLowerCase());
+      localStorage.setItem('registeredEmails', JSON.stringify(registeredEmails));
       // Redirect to login with success parameters
       navigate('/login?signup=success');
     } else {

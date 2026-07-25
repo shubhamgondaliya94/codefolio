@@ -15,9 +15,9 @@
   :root {
     --color-bg: #f8fafc;
     --color-surface: #ffffff;
-    --color-muted: #94a3b8;
+    --color-muted: #000000;
     --color-accent: #f9b17a;
-    --color-text: #0f172a;
+    --color-text: #000000;
   }
   
   .dark {

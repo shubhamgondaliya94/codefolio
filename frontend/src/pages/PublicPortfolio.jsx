@@ -143,6 +143,20 @@ const PublicPortfolio = () => {
 
       {/* Render the selected portfolio layout */}
       <PortfolioRenderer selectedTheme={portfolio.selectedTheme} data={portfolio} isPreview={false} />
+      
+      {/* Floating Download PDF button */}
+      <button
+        onClick={() => window.print()}
+        className="fixed bottom-6 right-6 px-4 py-3 bg-accent text-black hover:bg-white border border-black font-bold rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all z-50 print:hidden flex items-center gap-2"
+        title="Download Portfolio as PDF"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" x2="12" y1="15" y2="3"/>
+        </svg>
+        <span>Download PDF</span>
+      </button>
     </>
   );
 };
