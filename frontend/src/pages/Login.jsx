@@ -149,7 +149,7 @@ const Login = () => {
 
         <div className="text-center text-xs font-bold uppercase tracking-widest text-muted">
           No Identity?{' '}
-          <Link to="/signup" className="text-accent hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">
+          <Link to="/signup" className="text-accent hover:text-text transition-colors border-b border-transparent hover:border-text pb-0.5">
             Construct One
           </Link>
         </div>

@@ -212,7 +212,7 @@ const Signup = () => {
 
         <div className="text-center text-xs font-bold uppercase tracking-widest text-muted">
           Already Initialized?{' '}
-          <Link to="/login" className="text-accent hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">
+          <Link to="/login" className="text-accent hover:text-text transition-colors border-b border-transparent hover:border-text pb-0.5">
             Authenticate
           </Link>
         </div>

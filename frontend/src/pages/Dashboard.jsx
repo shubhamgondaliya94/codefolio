@@ -27,7 +27,7 @@ import { Github, Linkedin } from '../components/BrandIcons';
 import confetti from 'canvas-confetti';
 
 const Dashboard = () => {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   
   // State for form data
   const [formData, setFormData] = useState({
@@ -239,7 +239,7 @@ const Dashboard = () => {
 
   // Link utilities
   const getPublicUrl = () => {
-    return `${window.location.origin}/${formData.username || ''}`;
+    return `${window.location.origin}/${user?.username || formData.username || ''}`;
   };
 
   const copyUrlToClipboard = () => {
@@ -263,7 +263,7 @@ const Dashboard = () => {
       {/* Top dashboard nav */}
       <nav className="brutalist-card border-b border-muted py-4 px-6 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 font-extrabold text-lg text-white">
+          <div className="flex items-center gap-2 font-extrabold text-lg text-text">
             <span className="bg-accent text-black border border-accent px-2 py-1 rounded-lg text-sm">CF</span>
             <span>CodeFolio</span>
           </div>
@@ -302,10 +302,10 @@ const Dashboard = () => {
       </nav>
 
       {/* Split builder content area */}
-      <div className="flex-1 grid lg:grid-cols-12 overflow-hidden h-[calc(100vh-69px)]">
+      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-12 lg:overflow-hidden min-h-[calc(100vh-69px)] lg:h-[calc(100vh-69px)]">
         
         {/* Left Side: Forms Editor */}
-        <aside className="lg:col-span-5 border-r border-muted overflow-y-auto p-6 space-y-6">
+        <aside className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-muted overflow-y-auto p-6 space-y-6">
           {/* Tabs header */}
           <div className="flex border-b border-muted pb-2 scrollbar-none overflow-x-auto gap-2">
             {['profile', 'projects', 'skills_theme', 'publish'].map((tab) => (
@@ -326,7 +326,7 @@ const Dashboard = () => {
           {/* TAB 1: PROFILE INFORMATION */}
           {activeTab === 'profile' && (
             <div className="space-y-4 animate-fade-in">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-2">Personal Identity</h3>
+              <h3 className="text-sm font-bold text-text uppercase tracking-wider mb-2">Personal Identity</h3>
 
               <div className="flex items-center gap-6 p-4 bg-surface/30 border border-slate-900 rounded-2xl">
                 <div className="relative w-20 h-20 bg-surface rounded-2xl border border-slate-700 overflow-hidden shrink-0 flex items-center justify-center text-muted">
@@ -410,7 +410,7 @@ const Dashboard = () => {
                 ></textarea>
               </div>
 
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider pt-4 border-t border-muted">Socials & Contact Details</h3>
+              <h3 className="text-sm font-bold text-text uppercase tracking-wider pt-4 border-t border-muted">Socials & Contact Details</h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
@@ -503,7 +503,7 @@ const Dashboard = () => {
           {activeTab === 'projects' && (
             <div className="space-y-4 animate-fade-in">
               <div className="flex justify-between items-center mb-2">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider">Featured Projects</h3>
+                <h3 className="text-sm font-bold text-text uppercase tracking-wider">Featured Projects</h3>
                 <button
                   onClick={addProject}
                   className="flex items-center gap-1.5 px-3 py-1.5 bg-accent text-black/10 border border-accent text-accent rounded-xl text-xs font-bold transition-all hover:bg-accent text-black border border-accent/20"
@@ -626,7 +626,7 @@ const Dashboard = () => {
             <div className="space-y-6 animate-fade-in">
               {/* Skills Area */}
               <div className="space-y-4">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider">Expertise & Skills</h3>
+                <h3 className="text-sm font-bold text-text uppercase tracking-wider">Expertise & Skills</h3>
                 <form onSubmit={addSkill} className="flex gap-2">
                   <input
                     type="text"
@@ -664,7 +664,7 @@ const Dashboard = () => {
 
               {/* Theme selection */}
               <div className="space-y-4 border-t border-muted pt-6">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider">Choose Theme Preset</h3>
+                <h3 className="text-sm font-bold text-text uppercase tracking-wider">Choose Theme Preset</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {[
                     'Modern Developer',
@@ -691,7 +691,7 @@ const Dashboard = () => {
 
               {/* PDF & PPT Files upload */}
               <div className="space-y-4 border-t border-muted pt-6">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider">Document Uploads</h3>
+                <h3 className="text-sm font-bold text-text uppercase tracking-wider">Document Uploads</h3>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {/* CV Upload */}
@@ -737,7 +737,7 @@ const Dashboard = () => {
           {/* TAB 4: PUBLISH ACTIONS */}
           {activeTab === 'publish' && (
             <div className="space-y-6 animate-fade-in">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-2">Publish Settings</h3>
+              <h3 className="text-sm font-bold text-text uppercase tracking-wider mb-2">Publish Settings</h3>
 
               <div className="p-5 bg-surface/30 border border-slate-900 rounded-2xl space-y-4">
                 <span className="text-xs text-muted font-semibold block">Public Access Address (URL)</span>
@@ -790,8 +790,8 @@ const Dashboard = () => {
                   onClick={() => setPreviewMode(mode)}
                   className={`px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-lg border transition-all ${
                     previewMode === mode
-                      ? 'bg-surface border-slate-700 text-white'
-                      : 'border-transparent text-muted hover:text-slate-350'
+                      ? 'bg-surface border-slate-700 text-text'
+                      : 'border-transparent text-muted hover:text-slate-400'
                   }`}
                 >
                   {mode}
