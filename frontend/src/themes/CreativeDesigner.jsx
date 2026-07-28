@@ -141,7 +141,7 @@ const CreativeDesigner = ({ data, isPreview = false }) => {
                 <div className="space-y-4">
                   <div className="aspect-[16/10] w-full bg-slate-100 border-2 border-slate-900 rounded-2xl overflow-hidden">
                     {project.image ? (
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-contain bg-black/5" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-slate-50 text-slate-400 font-bold">
                         🎨 Artwork

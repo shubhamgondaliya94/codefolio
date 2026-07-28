@@ -149,7 +149,7 @@ const DarkProfessional = ({ data, isPreview = false }) => {
                 <div className="space-y-4">
                   <div className="aspect-[4/3] w-full bg-slate-950 rounded-lg overflow-hidden border border-slate-900">
                     {project.image ? (
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300" />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-contain bg-slate-900 group-hover:scale-102 transition-transform duration-300" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-700 text-xs">
                         [NO_PREVIEW]

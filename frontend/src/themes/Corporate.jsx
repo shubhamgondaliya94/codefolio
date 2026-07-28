@@ -133,7 +133,7 @@ const Corporate = ({ data, isPreview = false }) => {
                   <div>
                     <div className="aspect-video w-full bg-slate-200 overflow-hidden border-b border-slate-250">
                       {project.image ? (
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                        <img src={project.image} alt={project.title} className="w-full h-full object-contain bg-black/5" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold text-sm">
                           Corporate Case Study

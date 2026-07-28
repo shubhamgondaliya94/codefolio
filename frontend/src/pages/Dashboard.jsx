@@ -655,7 +655,7 @@ const Dashboard = () => {
 
                       {project.image && (
                         <div className="w-full aspect-video border border-slate-850 rounded-xl overflow-hidden relative">
-                          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                          <img src={project.image} alt={project.title} className="w-full h-full object-contain bg-slate-900/50" />
                         </div>
                       )}
                     </div>

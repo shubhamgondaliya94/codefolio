@@ -127,7 +127,7 @@ const Minimal = ({ data, isPreview = false }) => {
                 >
                   <div className="aspect-video bg-slate-100 border border-slate-200 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                     {project.image ? (
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-contain bg-black/5" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-400 font-serif font-light">
                         [Project Image]

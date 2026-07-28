@@ -152,7 +152,7 @@ const ModernDeveloper = ({ data, isPreview = false }) => {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain bg-slate-950 group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-700 font-bold">

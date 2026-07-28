@@ -134,7 +134,7 @@ const Glassmorphism = ({ data, isPreview = false }) => {
                 <div className="space-y-4">
                   <div className="aspect-video w-full bg-slate-950 rounded-2xl overflow-hidden border border-white/[0.05]">
                     {project.image ? (
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-contain bg-black/5" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-700 text-sm">
                         [Screenshot]
