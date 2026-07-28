@@ -26,6 +26,16 @@ const ThemeContactForm = ({ username, themeVariant = 'dark' }) => {
     setLoading(true);
     setStatus(null);
 
+    // If we are in the dashboard preview, do not actually send an email
+    if (window.location.pathname.includes('/dashboard')) {
+      setTimeout(() => {
+        setStatus({ type: 'success', text: 'Simulated: Your message has been delivered successfully!' });
+        setFormData({ senderName: '', senderEmail: '', message: '' });
+        setLoading(false);
+      }, 800);
+      return;
+    }
+
     try {
       // Direct POST to public contact API
       const response = await API.post(`/api/contact/${username}`, formData);

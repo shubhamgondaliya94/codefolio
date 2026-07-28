@@ -21,13 +21,16 @@ import {
   ExternalLink,
   Copy,
   PlusCircle,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Menu,
+  X
 } from 'lucide-react';
 import { Github, Linkedin } from '../components/BrandIcons';
 import confetti from 'canvas-confetti';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // State for form data
   const [formData, setFormData] = useState({
@@ -260,20 +263,32 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-noise bg-background text-text flex flex-col font-sans">
-      {/* Top dashboard nav */}
-      <nav className="brutalist-card border-b border-muted py-4 px-6 flex items-center justify-between sticky top-0 z-40">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 font-extrabold text-lg text-text">
-            <span className="bg-accent text-black border border-accent px-2 py-1 rounded-lg text-sm">CF</span>
-            <span>CodeFolio</span>
+      <nav className="brutalist-card border-b border-muted py-4 px-6 flex flex-col md:flex-row md:items-center justify-between sticky top-0 z-40 bg-background">
+        <div className="flex items-center justify-between w-full md:w-auto">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 font-extrabold text-lg text-text">
+              <span className="bg-accent text-black border border-accent px-2 py-1 rounded-lg text-sm">CF</span>
+              <span>CodeFolio</span>
+            </div>
+            <span className="text-muted hidden sm:inline">|</span>
+            <span className="text-xs font-semibold text-muted bg-surface px-3 py-1 rounded-lg hidden sm:inline">
+              Dashboard Panel
+            </span>
           </div>
-          <span className="text-muted">|</span>
-          <span className="text-xs font-semibold text-muted bg-surface px-3 py-1 rounded-lg">
-            Dashboard Panel
-          </span>
+          {/* Mobile Menu Toggle Button */}
+          <div className="md:hidden flex items-center gap-2">
+            <DarkModeToggle />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-text hover:text-accent transition-colors"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center gap-3">
           <DarkModeToggle />
           <button
             onClick={saveDashboard}
@@ -299,6 +314,35 @@ const Dashboard = () => {
             <LogOut className="w-4 h-4" />
           </button>
         </div>
+
+        {/* Mobile Dropdown Actions */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-4 pt-4 border-t border-muted flex flex-col gap-3 pb-2 animate-fade-in">
+            <button
+              onClick={saveDashboard}
+              disabled={saveLoading}
+              className="flex items-center justify-center gap-1.5 px-4 py-3 bg-surface border border-slate-800 hover:border-slate-700 text-text rounded-xl text-sm font-semibold transition-all disabled:opacity-50"
+            >
+              <Save className="w-4 h-4" />
+              <span>Save Draft</span>
+            </button>
+            <button
+              onClick={publishPortfolio}
+              disabled={saveLoading}
+              className="flex items-center justify-center gap-1.5 px-4 py-3 bg-accent text-black hover:bg-[#ffffff] hover:text-black text-white rounded-xl text-sm font-semibold transition-all shadow-md shadow-indigo-600/20 disabled:opacity-50"
+            >
+              <Rocket className="w-4 h-4" />
+              <span>Publish Live</span>
+            </button>
+            <button
+              onClick={logout}
+              className="flex items-center justify-center gap-1.5 px-4 py-3 bg-surface/50 text-rose-455 hover:bg-white/5 rounded-xl transition-colors text-sm font-semibold"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Log out</span>
+            </button>
+          </div>
+        )}
       </nav>
 
       {/* Split builder content area */}

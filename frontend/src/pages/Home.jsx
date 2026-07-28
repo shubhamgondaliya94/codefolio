@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import DarkModeToggle from '../components/DarkModeToggle';
 
 const Home = () => {
   const { user } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const themesShowcase = [
     { name: 'Modern Developer', desc: 'Gradients and code vibes.', style: 'bg-background border border-accent text-accent' },
@@ -27,7 +29,7 @@ const Home = () => {
             </div>
             <span className="font-display font-bold tracking-tight text-xl text-text">CODEFOLIO</span>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
             <DarkModeToggle />
             {user ? (
               <Link to="/dashboard" className="brutalist-button px-6 py-2.5 text-sm">
@@ -44,7 +46,38 @@ const Home = () => {
               </>
             )}
           </div>
+          
+          {/* Mobile Menu Toggle Button */}
+          <div className="md:hidden flex items-center gap-4">
+            <DarkModeToggle />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-text hover:text-accent transition-colors"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-4 pt-4 border-t border-muted flex flex-col gap-4 pb-2">
+            {user ? (
+              <Link to="/dashboard" className="brutalist-button px-6 py-3 text-center">
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link to="/login" className="text-center py-2 text-sm font-bold uppercase tracking-widest text-text hover:text-accent transition-colors">
+                  Sign In
+                </Link>
+                <Link to="/signup" className="brutalist-button px-6 py-3 text-center">
+                  Get Started
+                </Link>
+              </>
+            )}
+          </div>
+        )}
       </nav>
 
       {/* Hero Section - Asymmetric Editorial */}
