@@ -17,8 +17,8 @@ router.put('/', protect, updateDashboard);
 
 // Upload routes
 router.post('/upload/profile', protect, upload.single('profileImage'), uploadProfileImage);
-router.post('/upload/resume', protect, upload.single('resume'), uploadResume);
-router.post('/upload/ppt', protect, upload.single('ppt'), uploadPpt);
+router.post('/upload/resume', protect, upload.single('resumeURL'), uploadResume);
+router.post('/upload/ppt', protect, upload.single('uploadedPPT'), uploadPpt);
 router.post('/upload/project-image', protect, upload.single('projectImage'), uploadProjectImage);
 
 module.exports = router;

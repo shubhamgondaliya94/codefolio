@@ -24,34 +24,32 @@ const storage = multer.diskStorage({
 
 // File filter based on type
 const fileFilter = (req, file, cb) => {
-  const allowedImageTypes = /jpeg|jpg|png|webp|gif/;
+  const allowedImageTypes = /jpeg|jpg|png|webp|gif|svg|heic|heif/;
   const allowedDocTypes = /pdf|msword|vnd.openxmlformats-officedocument.wordprocessingml.document/;
   const allowedPptTypes = /mspowerpoint|powerpoint|vnd.ms-powerpoint|vnd.openxmlformats-officedocument.presentationml.presentation/;
 
   const ext = path.extname(file.originalname).toLowerCase();
   const mimetype = file.mimetype;
+  const isGenericMime = !mimetype || mimetype === 'application/octet-stream';
 
   if (file.fieldname === 'profileImage' || file.fieldname === 'projectImage') {
-    // Images only
-    const isValidExt = allowedImageTypes.test(ext);
-    const isValidMime = allowedImageTypes.test(mimetype);
-    if (isValidExt && isValidMime) {
+    const isValidExt = allowedImageTypes.test(ext) || ext === '.svg' || ext === '.heic';
+    const isValidMime = allowedImageTypes.test(mimetype) || mimetype === 'image/svg+xml';
+    if (isValidExt || (isValidMime && !isGenericMime)) {
       return cb(null, true);
     }
-    return cb(new Error('Only JPEG, JPG, PNG, WEBP, or GIF images are allowed!'));
-  } else if (file.fieldname === 'resume') {
-    // Resumes (PDF, Word DOC)
+    return cb(new Error('Only JPEG, JPG, PNG, WEBP, GIF, SVG, or HEIC images are allowed!'));
+  } else if (file.fieldname === 'resumeURL') {
     const isValidExt = allowedDocTypes.test(ext) || ext === '.pdf' || ext === '.doc' || ext === '.docx';
     const isValidMime = allowedDocTypes.test(mimetype) || mimetype === 'application/pdf';
-    if (isValidExt && isValidMime) {
+    if (isValidExt || (isValidMime && !isGenericMime)) {
       return cb(null, true);
     }
     return cb(new Error('Only PDF or Word documents are allowed for resumes!'));
-  } else if (file.fieldname === 'ppt') {
-    // PowerPoint (PPT, PPTX)
+  } else if (file.fieldname === 'uploadedPPT') {
     const isValidExt = allowedPptTypes.test(ext) || ext === '.ppt' || ext === '.pptx';
     const isValidMime = allowedPptTypes.test(mimetype);
-    if (isValidExt && isValidMime) {
+    if (isValidExt || (isValidMime && !isGenericMime)) {
       return cb(null, true);
     }
     return cb(new Error('Only PPT or PPTX slideshow presentations are allowed!'));
@@ -65,7 +63,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 20 * 1024 * 1024, // General maximum limit: 20MB (mostly for PPTs)
+    fileSize: 50 * 1024 * 1024, // General maximum limit: 50MB (to allow high-res images and large PPTs)
   },
 });
 
