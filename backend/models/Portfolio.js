@@ -102,6 +102,12 @@ const PortfolioSchema = new mongoose.Schema(
       phone: { type: String, default: '' },
       address: { type: String, default: '' },
     },
+    customDomain: {
+      type: String,
+      default: '',
+      trim: true,
+      lowercase: true,
+    },
   },
   {
     timestamps: true,

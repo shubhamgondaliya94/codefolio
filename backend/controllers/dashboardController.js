@@ -64,6 +64,7 @@ const updateDashboard = async (req, res) => {
       socialLinks,
       contactDetails,
       selectedTheme,
+      customDomain,
     } = req.body;
 
     portfolio.fullName = fullName !== undefined ? fullName : portfolio.fullName;
@@ -75,6 +76,7 @@ const updateDashboard = async (req, res) => {
     portfolio.skills = skills !== undefined ? skills : portfolio.skills;
     portfolio.projects = projects !== undefined ? projects : portfolio.projects;
     portfolio.selectedTheme = selectedTheme !== undefined ? selectedTheme : portfolio.selectedTheme;
+    portfolio.customDomain = customDomain !== undefined ? customDomain : portfolio.customDomain;
 
     if (socialLinks) {
       portfolio.socialLinks = { ...portfolio.socialLinks, ...socialLinks };

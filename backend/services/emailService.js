@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const createTransporter = async () => {
   // Defensive fallbacks for development/tests
   const isDummyHost = !process.env.EMAIL_HOST || process.env.EMAIL_HOST.includes('mailtrap');
-  const isMocked = !process.env.EMAIL_USER || process.env.EMAIL_USER === 'dhruvcoronavirus@gmail.com';
+  const isMocked = !process.env.EMAIL_USER || process.env.EMAIL_USER === 'your_mailtrap_user';
 
   if (isMocked) {
     console.log('Using simulated/test email transporter (development fallback).');

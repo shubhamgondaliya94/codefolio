@@ -7,19 +7,25 @@ const validator = require('validator');
 // @route   GET /:username
 // @access  Public
 const getPublicPortfolio = async (req, res) => {
-  const username = req.params.username.toLowerCase();
+  const identifier = req.params.username.toLowerCase();
 
   try {
-    // 1. Search signup (User) collection
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' });
+    // 1. First search User collection by username
+    let user = await User.findOne({ username: identifier });
+    let portfolio;
+
+    if (user) {
+      portfolio = await Portfolio.findOne({ userId: user._id });
+    } else {
+      // Fallback: search Portfolio collection by customDomain
+      portfolio = await Portfolio.findOne({ customDomain: identifier });
+      if (portfolio) {
+        user = await User.findById(portfolio.userId);
+      }
     }
 
-    // 2. Fetch dashboard_details (Portfolio) using userId
-    const portfolio = await Portfolio.findOne({ userId: user._id });
-    if (!portfolio) {
-      return res.status(404).json({ success: false, message: 'Portfolio details not configured yet' });
+    if (!user || !portfolio) {
+      return res.status(404).json({ success: false, message: 'Portfolio page not found' });
     }
 
     return res.status(200).json({
@@ -131,7 +137,10 @@ const sendContactForm = async (req, res) => {
 
   try {
     // 2. Fetch portfolio details of owner (includes user contact email)
-    const portfolio = await Portfolio.findOne({ username });
+    let portfolio = await Portfolio.findOne({ username });
+    if (!portfolio) {
+      portfolio = await Portfolio.findOne({ customDomain: username });
+    }
     if (!portfolio) {
       return res.status(404).json({ success: false, message: 'Recipient portfolio page not found' });
     }
